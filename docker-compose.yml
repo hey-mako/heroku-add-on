@@ -1,0 +1,6 @@
+services:
+  application:
+    build: .
+    ports:
+      - "8080:8080"
+version: "3.6"

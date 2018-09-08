@@ -1,0 +1,9 @@
+services:
+  application:
+    environment:
+      FLASK_ENV: development
+      FLASK_RUN_HOST: 0.0.0.0
+      FLASK_RUN_PORT: 8080
+    volumes:
+      - .:/srv
+version: "3.6"
