@@ -1,4 +1,4 @@
-FROM python:3.4-alpine3.7
+FROM python:3.6-alpine3.6
 ENV FLASK_APP src
 WORKDIR /srv
 COPY setup.py .

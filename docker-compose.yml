@@ -1,6 +1,11 @@
 services:
   application:
     build: .
+    depends_on:
+      - mongo
     ports:
       - "8080:8080"
+  mongo:
+    command: --noauth
+    image: mongo:3.6.6
 version: "3.6"
