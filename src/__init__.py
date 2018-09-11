@@ -1,3 +1,4 @@
+"""Entry point for the application."""
 from json import load
 
 from flask import Flask
@@ -15,4 +16,4 @@ with application.open_instance_resource('addon-manifest.json') as f:
 client = MongoClient('mongo')
 database = client.heroku
 
-import src.views
+import src.views # pylint: disable=wrong-import-position
