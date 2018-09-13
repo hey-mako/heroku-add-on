@@ -1,4 +1,6 @@
 """Entry point for the application."""
+import os
+
 from json import load
 
 from flask import Flask
@@ -13,7 +15,7 @@ with application.open_instance_resource('addon-manifest.json') as f:
     application.config['KENSA_PASSWORD'] = manifest['api']['password']
 
 
-client = MongoClient('mongo')
+client = MongoClient(os.getenv('MONGO_CLIENT_URI'))
 database = client.heroku
 
 import src.views # pylint: disable=wrong-import-position

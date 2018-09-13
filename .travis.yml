@@ -1,0 +1,19 @@
+before_script:
+  - kensa init
+  - mkdir instance
+  - mv addon-manifest.json instance
+  - docker images -aq
+  - docker build .
+  - docker run --network host -d -e 'FLASK_RUN_HOST=0.0.0.0' -e 'FLASK_RUN_PORT=4567' -e 'MONGO_CLIENT_URI=mongodb://127.0.0.1' -p 4567:4567 -v $(pwd):/srv $(docker images -q | head -1)
+cache: bundler
+install:
+  - gem install kensa
+language: ruby
+script:
+  - kensa --filename instance/addon-manifest.json run all
+services:
+  - docker
+  - mongodb
+sudo: required
+rvm:
+  - 2.2
