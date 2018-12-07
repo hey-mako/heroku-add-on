@@ -83,10 +83,24 @@ class ResourceController(MethodView):
         return '', HTTPStatus.OK
 
 
+class EventController(MethodView):
+
+    def get(self): # pylint: disable=no-self-use
+        return '', HTTPStatus.OK
+
+    def post(self): # pylint: disable=no-self-use
+        if not request.is_json:
+            return '', HTTPStatus.BAD_REQUEST
+        data = request.json
+        return '', HTTPStatus.OK
+
+
 view = login_required(ResourceController.as_view('resources'))
+
 application.add_url_rule('/heroku/resources', view_func=view)
+
 application.add_url_rule(
     '/heroku/resources/<resource_uuid>',
-    view_func=view,
-    methods=['DELETE', 'PUT']
+    methods=['DELETE', 'PUT'],
+    view_func=view
 )
